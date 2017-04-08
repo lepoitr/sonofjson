@@ -38,4 +38,6 @@ A Scala library for dealing with JSON in a way that makes it almost feel native.
 
     render(person)
 
-
+Extra:
+		person.__keys --> Iterable[String] Set(name)
+		person.name.__values --> Iterable[nl.typeset.sonofjson.JValue] = HashMap(JString(Doe), JString(John))
