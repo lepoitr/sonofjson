@@ -74,6 +74,16 @@ package object sonofjson extends Implicits {
       case _ => throw NotSupportedException(s"$this is not something that positional updates")
     }
 
+		def __keys = this match {
+						case(JObject(elements)) => elements.keys
+						case _ => Set()
+		}
+		def __values = this match {
+						case(JObject(elements)) => elements.values
+						case(JArray(elements)) =>  elements.toSeq
+						case _ => Seq()
+		}
+
   }
 
   case class JObject(elements: mutable.Map[String, JValue]) extends JValue
