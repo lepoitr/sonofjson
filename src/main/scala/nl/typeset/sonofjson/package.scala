@@ -75,7 +75,7 @@ package object sonofjson extends Implicits {
     }
 
 		def __keys = this match {
-						case(JObject(elements)) => elements.keys
+						case(JObject(elements)) => elements.keySet
 						case _ => Set()
 		}
 		def __values = this match {
@@ -148,6 +148,9 @@ package object sonofjson extends Implicits {
     builder.toString
   }
 
+   def emptyObj = { JObject(mutable.Map[String,JValue]()) }
+   def emptyArr = { JArray(mutable.Buffer())}
+
   object Parser extends JavaTokenParsers {
 
     def stripQuotes(str: String) =
@@ -199,7 +202,6 @@ package object sonofjson extends Implicits {
       case "apply" =>
         JObject(mutable.Map[String, JValue](args: _*))
     }
-
   }
 
   object arr extends Dynamic {
